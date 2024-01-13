@@ -6,7 +6,9 @@ import cn.imnu.internship_m.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -28,4 +30,20 @@ public class UserController {
     public Integer deleteById(@PathVariable Integer id) {
         return userMapper.deleteById(id);
     }
+
+    //分页查询
+    //接口路径user/page?pageNum=1&pageSize=10
+    //RequestParam接受前台传过来的第几页，每页显示数
+    @GetMapping("/page")
+    public Map<String,Object> findPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
+        pageNum=(pageNum-1)*pageSize;
+        List<User> data=userService.selectPage(pageNum,pageSize);
+        Integer total=userMapper.selectTotal();
+        Map<String,Object> res=new HashMap<>();
+        res.put("data",data);
+        res.put("total",total);
+        return res;
+    }
+
+
 }

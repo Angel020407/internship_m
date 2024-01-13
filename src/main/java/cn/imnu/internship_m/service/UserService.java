@@ -1,9 +1,11 @@
 package cn.imnu.internship_m.service;
 
 import cn.imnu.internship_m.entity.User;
-import org.springframework.stereotype.Service;
 import cn.imnu.internship_m.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -20,4 +22,9 @@ public class UserService {
     public Integer deleteById(Integer id) {
         return userMapper.deleteById(id);
     }
+
+    public List selectPage(Integer pageNum, Integer pageSize) {
+        return userMapper.selectPage(pageNum,pageSize);
+    }
+
 }

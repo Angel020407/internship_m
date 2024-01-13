@@ -18,5 +18,11 @@ public interface UserMapper {
     int update(User user);
     @Delete ("delete from user where id=#{id}")
     int deleteById(@Param("id") Integer id);
+    //分页查询
+    @Select("select * from user limit #{pageNum},#{pageSize}")
+    List<User> selectPage(Integer pageNum, Integer pageSize);
+    //总记录数
+    @Select("select count(*) from user")
+    Integer selectTotal();
 
 }

@@ -84,28 +84,34 @@
            <el-button type="primary">导出<i class="el-icon-top"></i></el-button>
         </div>
           <el-table :data="tableData">
-            <el-table-column prop="date" label="日期" width="140">
+            <el-table-column prop="id" label="ID " width="80">
             </el-table-column>
-            <el-table-column prop="name" label="姓名" width="120">
+            <el-table-column prop="username" label="姓名 " width="80">
+            </el-table-column>
+            <el-table-column prop="email" label="邮箱" width="120">
+            </el-table-column>
+             <el-table-column prop="phone" label="电话">
+            </el-table-column>
+            <el-table-column prop="nickname" label="昵称">
             </el-table-column>
             <el-table-column prop="address" label="地址">
             </el-table-column>         
-            <el-table-column fixed="right" label="操作">                         
+            <el-table-column fixed="right" label="操作" width="240">                         
               <template slot-scope="scope">
-                <el-button type="success" size="small" icon="el-icon-edit">编辑</el-button>
+                <el-button type="success" size="small" icon="el-icon-edit" @click="edit(scope.row)">编辑</el-button>
                 <el-button type="danger" size="small"  icon="el-icon-delete">删除</el-button>
               </template>
             </el-table-column>         
           </el-table>
           <div style="padding:10px">
            <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[5, 10, 15, 20]"
-            :page-size="10"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="pageNum"
+              :page-sizes="[5, 10, 15, 20]"
+              :page-size="pageSize"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total">
            </el-pagination>
          </div>
         </el-main>
@@ -117,28 +123,57 @@
   
   <script>
   // @ is an alias to /src
-  import HelloWorld from '@/components/HelloWorld.vue'
+  import HelloWorld from '/src/components/HelloWorld.vue'
   
   export default {
     name: 'HomeView',
     methods: {
         handleSizeChange(val) {
           console.log(`每页 ${val} 条`);
+          this.pageSize=val;
         },
         handleCurrentChange(val) {
           console.log(`当前页: ${val}`);
+          this.pageNum=val;
         }
       },
-    data(){
-       const item = {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        };
+    data(){    
         return {
-          tableData: Array(7).fill(item)
+          tableData:[],
+          total:0,
+          pageNum:1,
+          pageSize:5
         }
-    }
+    },
+      created(){
+        //请求分页查询数据
+        this.load();
+    },
+     methods: {
+        edit(row){
+        console.log(row);
+        },  
+        handleSizeChange(val) {/*传递过来当前是第几页*/
+          console.log(`每页 ${val} 条`);
+          this.pageSize=val;  //获取当前每页显示条数
+          this.load();
+        },
+        handleCurrentChange(val) {/*传递过来当前是第几页*/
+          console.log(`当前页: ${val}`);
+          this.pageNum=val;   //获取当前第几页
+          this.load();
+        },
+        //将请求数据封装为一个方法
+        load() {
+          //请求分页查询数据
+            fetch("http://localhost:8081/user/page?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"").then(res=>res.json()).then(res=>{
+            console.log(res)
+            this.tableData=res.data
+            this.total=res.total
+            })
+          }
+      },
+  
   }
   </script>
   <style>  
