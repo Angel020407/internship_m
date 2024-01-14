@@ -35,10 +35,11 @@ public class UserController {
     //接口路径user/page?pageNum=1&pageSize=10
     //RequestParam接受前台传过来的第几页，每页显示数
     @GetMapping("/page")
-    public Map<String,Object> findPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
+    public Map<String,Object> findPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize, @RequestParam String userName){
         pageNum=(pageNum-1)*pageSize;
-        List<User> data=userService.selectPage(pageNum,pageSize);
-        Integer total=userMapper.selectTotal();
+        userName = "%" + userName + "%";
+        List<User> data=userService.selectPage(pageNum,pageSize,userName);
+        Integer total=userMapper.selectTotal(userName);
         Map<String,Object> res=new HashMap<>();
         res.put("data",data);
         res.put("total",total);

@@ -23,8 +23,11 @@ public class UserService {
         return userMapper.deleteById(id);
     }
 
-    public List selectPage(Integer pageNum, Integer pageSize) {
-        return userMapper.selectPage(pageNum,pageSize);
+    public List selectPage(Integer pageNum, Integer pageSize, String userName) {
+        return userMapper.selectPage(pageNum,pageSize,userName);
     }
 
+    public Integer selectTotal(String userName) {
+        return userMapper.selectTotal(userName);
+    }
 }

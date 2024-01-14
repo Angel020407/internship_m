@@ -19,10 +19,10 @@ public interface UserMapper {
     @Delete ("delete from user where id=#{id}")
     int deleteById(@Param("id") Integer id);
     //分页查询
-    @Select("select * from user limit #{pageNum},#{pageSize}")
-    List<User> selectPage(Integer pageNum, Integer pageSize);
+    @Select("select * from user where name like #{userName} limit #{pageNum},#{pageSize}")
+    List<User> selectPage(Integer pageNum, Integer pageSize, String userName);
     //总记录数
-    @Select("select count(*) from user")
-    Integer selectTotal();
+    @Select("select count(*) from user where name like #{userName}")
+    Integer selectTotal(String userName);
 
 }

@@ -72,10 +72,9 @@
         
         <el-main>
          <div style="padding:10px">
-          <el-input style="width:250px" suffix-icon="el-icon-search" placeholder="请输入名称搜索"></el-input>
-          <el-input style="width:250px" suffix-icon="el-icon-email" placeholder="请输入邮箱搜索"></el-input>
+          <el-input style="width:250px" suffix-icon="el-icon-search" placeholder="请输入名称搜索" v-model = "userName"></el-input>
           <el-input style="width:250px" suffix-icon="el-icon-position" placeholder="请输入地址搜索"></el-input>
-          <el-button style="margin-left:5px" type="primary">搜索</el-button>
+          <el-button style="margin-left:5px" type="primary" @click = "load">搜索</el-button>
         </div>
         <div style="margin:10px">
            <el-button type="primary">新增<i class="el-icon-circle-plus"></i></el-button>
@@ -87,8 +86,6 @@
             <el-table-column prop="id" label="ID " width="80">
             </el-table-column>
             <el-table-column prop="username" label="姓名 " width="80">
-            </el-table-column>
-            <el-table-column prop="email" label="邮箱" width="120">
             </el-table-column>
              <el-table-column prop="phone" label="电话">
             </el-table-column>
@@ -142,7 +139,9 @@
           tableData:[],
           total:0,
           pageNum:1,
-          pageSize:5
+          pageSize:5,
+          userName:"",
+          address:"",
         }
     },
       created(){
@@ -166,14 +165,23 @@
         //将请求数据封装为一个方法
         load() {
           //请求分页查询数据
-            fetch("http://localhost:8081/user/page?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"").then(res=>res.json()).then(res=>{
-            console.log(res)
-            this.tableData=res.data
-            this.total=res.total
-            })
-          }
-      },
-  
+            //fetch("http://localhost:8080/user/page?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"userName"+this.userName+"").then(res=>res.json()).then(res=>{
+          //使用axios方式    
+            this.request.get("http://localhost:8080/user/page",{
+            params:{
+              pageNum: this.pageNum,
+              pageSize: this.pageSize,
+              username: this.username,
+              nickname:this.nickname,
+              address:this.address
+            }
+            }).then(res=>{
+          console.log(res)
+          this.tableData=res.data
+          this.total=res.total
+          })
+      }
+    }
   }
   </script>
   <style>  
