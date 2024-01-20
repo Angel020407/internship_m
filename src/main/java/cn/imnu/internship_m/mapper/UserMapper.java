@@ -1,12 +1,13 @@
 package cn.imnu.internship_m.mapper;
 
 import cn.imnu.internship_m.entity.User;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-@Mapper
-public interface UserMapper {
+//@Mapper
+public interface UserMapper extends BaseMapper<User> {
     @Select("select * from user")
     List<User> findAll();
     @Insert("insert into user(name,password,sex,age) " +

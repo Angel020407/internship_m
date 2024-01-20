@@ -177,7 +177,7 @@
             }
             }).then(res=>{
           console.log(res)
-          this.tableData=res.data
+          this.tableData=res.Records
           this.total=res.total
           })
       }
