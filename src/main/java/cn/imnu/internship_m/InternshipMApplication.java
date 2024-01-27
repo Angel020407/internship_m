@@ -8,7 +8,6 @@ public class InternshipMApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(InternshipMApplication.class, args);
-        System.out.println("后端启动成功૮(˶ᵔ ᵕ ᵔ˶)ა" + "૮꒰ ˶• ༝ •˶꒱ა");
     }
 
 }
