@@ -11,4 +11,10 @@ public interface UteService {
      * @return
      */
     List<Ute> list();
+
+    //根据id删除
+    void delete(Integer id);
+
+    //新增
+    void add(Ute ute);
 }
