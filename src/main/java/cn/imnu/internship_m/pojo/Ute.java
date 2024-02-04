@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Ute {
     private Integer id; //ID
-    private String name; //部门名称
-
-    private LocalDateTime createTime; //创建时间
-    private LocalDateTime updateTime; //修改时间
+    private String name; //姓名
+    private String lrscore; //听课记录成绩
+    private String ldscore; //教学设计成绩
+    private String tcscore; //主题班会成绩
 }

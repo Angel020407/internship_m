@@ -25,19 +25,4 @@ public class UteController {
         return Result.success(uteList);
     }
 
-    //删除信息
-    @DeleteMapping("/depts/{id}")
-    public Result delete(@PathVariable Integer id) {
-        log.info("根据id删除数据:{}", id);
-        uteService.delete(id);
-        return Result.success();
-    }
-
-    //新增信息
-    @PostMapping("/depts")
-    public Result add(@RequestBody Ute ute) {
-        log.info("新增部门数据:{}", ute);
-        uteService.add(ute);
-        return Result.success();
-    }
 }

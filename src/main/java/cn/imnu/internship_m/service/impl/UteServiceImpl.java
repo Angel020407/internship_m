@@ -20,18 +20,5 @@ public class UteServiceImpl implements UteService {
         return uteMapper.list();
     }
 
-    @Override
-    public void delete(Integer id) {
-        uteMapper.delete(id);
-    }
-
-    @Override
-    public void add(Ute ute) {
-        ute.setCreateTime(LocalDateTime.now());
-        ute.setUpdateTime(LocalDateTime.now());
-
-        uteMapper.insert(ute);
-
-    }
 
 }
