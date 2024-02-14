@@ -8,7 +8,7 @@
             <el-input v-model="admin.name" prefix-icon="el-icon-user" style="width: 80%" placeholder="请输入用户名"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input v-model="admin.password" prefix-icon="el-icon-lock" style="width: 80%" placeholder="请输入密码"></el-input>
+            <el-input v-model="admin.password" show-password prefix-icon="el-icon-lock" style="width: 80%" placeholder="请输入密码"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button style="width: 80%; margin-top: 10px" type="primary" @click="login()">登录</el-button>
@@ -43,6 +43,7 @@ export default {
             message: '登录成功',
             type: 'success'
           });
+          localStorage.setItem("user", JSON.stringify(res.data));
           this.$router.push("/");
         } else {
           this.$message({

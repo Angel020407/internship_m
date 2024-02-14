@@ -5,6 +5,8 @@ import com.example.entity.Admin;
 import com.example.entity.Params;
 import com.example.service.AdminService;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -14,6 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+
+    private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
     @Resource
     private AdminService adminService;
@@ -48,6 +52,7 @@ public class AdminController {
 
     @GetMapping("/search")
     public Result findBySearch(Params params) {
+        log.info("拦截器已放行，正式调用接口内部，查询管理员信息");
         PageInfo<Admin> info = adminService.findBySearch(params);
         return Result.success(info);
     }

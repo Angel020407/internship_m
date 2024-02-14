@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // 创建一个axios对象出来
 const request = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'http://localhost:8080/api',
     timeout: 5000
 })
 
@@ -12,6 +12,11 @@ const request = axios.create({
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
 
+    const user = localStorage.getItem("user");
+    if (user) {
+        config.headers['token'] = JSON.parse(user).token;
+    }
+    
     // config.headers['token'] = user.token;  // 设置请求头
     return config
 }, error => {
