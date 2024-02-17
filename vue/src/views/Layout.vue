@@ -33,10 +33,10 @@
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
-              <i class="el-icon-location"></i><span>教学设计</span>
+              <i class="el-icon-location"></i><span>教学设计管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="record">听课记录</el-menu-item>
+              <el-menu-item index="/record">听课记录提交</el-menu-item>
               <el-menu-item index="3-2">yyy信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>

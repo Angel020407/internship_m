@@ -1,7 +1,8 @@
 package com.example.dao;
 
-import com.example.entity.Params;
 import com.example.entity.Record;
+import com.example.entity.Params;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -11,5 +12,5 @@ import java.util.List;
 @Repository
 public interface RecordDao extends Mapper<Record> {
 
-    List<Record> findBySearch(Params params);
+    List<Record> findBySearch(@Param("params") Params params);
 }
