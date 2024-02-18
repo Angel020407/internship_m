@@ -4,7 +4,9 @@ public class Params {
 
     private String name;
     private String phone;
-    private String author;
+    private String type;
+    private String num;
+
     private Integer pageNum;
     private Integer pageSize;
 
@@ -24,12 +26,20 @@ public class Params {
         this.phone = phone;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getType() {
+        return type;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public Integer getPageNum() {

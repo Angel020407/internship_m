@@ -1,9 +1,17 @@
 <template>
   <div>
+    <div style="margin-bottom: 15px">
+      <el-input v-model="params.type" style="width: 200px" placeholder="请输入作业类型"></el-input>
+      <el-input v-model="params.num" style="width: 200px; margin-left: 5px" placeholder="请输入序号"></el-input>
+      <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">查询</el-button>
+      <el-button type="warning" style="margin-left: 10px" @click="reset()">清空</el-button>
+      <el-button type="primary" style="margin-left: 10px" @click="add()">新增</el-button>
+    </div>
     <div>
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column type="index" label="听课记录" width="240"></el-table-column>
-        <el-table-column label="文件预览">
+        <el-table-column prop="type" label="作业类型"></el-table-column>
+        <el-table-column prop="num" label="序号"></el-table-column>
+        <el-table-column label="显示文件">
           <template v-slot="scope">
             <el-image
                 style="width: 70px; height: 70px; border-radius: 50%"
@@ -39,10 +47,24 @@
       </el-pagination>
     </div>
     <div>
-      <el-dialog title="请选择文件" :visible.sync="dialogFormVisible" width="30%">
+      <el-dialog title="请填写信息" :visible.sync="dialogFormVisible" width="30%">
+        <el-form :model="form">
+          <el-form-item label="作业类型" label-width="20%">
+            <el-select v-model="form.type" placeholder="请选择" style="width: 90%">
+              <el-option label="听课记录" value="听课记录"></el-option>
+              <el-option label="教学设计" value="教学设计"></el-option>
+              <el-option label="主题班会" value="主题班会"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="序号" label-width="20%">
+            <el-input v-model="form.num" autocomplete="off" style="width: 90%"></el-input>
+          </el-form-item>
+          <el-form-item label="选择附件" label-width="20%">
             <el-upload action="http://localhost:8080/api/files/upload" :on-success="successUpload">
               <el-button size="small" type="primary">点击上传</el-button>
             </el-upload>
+          </el-form-item>
+        </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
           <el-button type="primary" @click="submit()">确 定</el-button>
@@ -59,8 +81,8 @@ export default {
   data() {
     return {
       params: {
-        name: '',
-        author: '',
+        type: '',
+        num: '',
         pageNum: 1,
         pageSize: 5
       },
@@ -100,8 +122,8 @@ export default {
       this.params = {
         pageNum: 1,
         pageSize: 5,
-        name: '',
-        phone: ''
+        type: '',
+        num: ''
       }
       this.findBySearch();
     },

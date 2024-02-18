@@ -13,6 +13,7 @@
         <el-table-column prop="sex" label="性别"></el-table-column>
         <el-table-column prop="age" label="年龄"></el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
+        <el-table-column prop="role" label="角色"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
@@ -49,6 +50,12 @@
           </el-form-item>
           <el-form-item label="电话" label-width="15%">
             <el-input v-model="form.phone" autocomplete="off" style="width: 90%"></el-input>
+          </el-form-item>
+          <el-form-item label="角色" label-width="15%">
+            <el-select v-model="form.role" placeholder="请选择" style="width: 90%">
+              <el-option label="教师" value="ROLE_TEACHER"></el-option>
+              <el-option label="学生" value="ROLE_STUDENT"></el-option>
+            </el-select>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">

@@ -5,11 +5,11 @@
     <select id="findBySearch" resultType="com.example.entity.Record">
         select * from record
         <where>
-            <if test="params != null and params.name != null and params.name != ''">
-                and name like concat('%', #{ params.name }, '%')
+            <if test="params != null and params.type != null and params.type != ''">
+                and type like concat('%', #{ params.type }, '%')
             </if>
-            <if test="params != null and params.author != null and params.author != ''">
-                and author like concat('%', #{ params.author }, '%')
+            <if test="params != null and params.num != null and params.num != ''">
+                and num like concat('%', #{ params.num }, '%')
             </if>
         </where>
     </select>
