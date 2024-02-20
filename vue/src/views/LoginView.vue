@@ -13,8 +13,10 @@
           <el-form-item>
             <el-button style="width: 80%; margin-top: 10px" type="primary" @click="login()">登录</el-button>
           </el-form-item>
+          <div style="text-align: center">
+            未有账号？<a href="javascript:void(0)" style="text-decoration: none" @click="navRegister">点击注册</a>
+          </div>
         </el-form>
-
       </div>
     </div>
   </div>
@@ -52,7 +54,10 @@ export default {
           });
         }
       })
-    }
+    },
+    navRegister() {
+    this.$router.push("/register")
+  }
   }
 }
 </script>

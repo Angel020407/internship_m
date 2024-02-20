@@ -4,6 +4,9 @@ public class Params {
 
     private String name;
     private String phone;
+
+    private Integer userId;
+
     private String type;
     private String num;
 
@@ -56,5 +59,13 @@ public class Params {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

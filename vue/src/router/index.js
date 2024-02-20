@@ -6,6 +6,7 @@ import AdminView from "@/views/AdminView.vue";
 import LayoutView from "@/views/Layout.vue";
 import RegisterView from "@/views/RegisterView";
 import RecordView from "@/views/RecordView";
+import AuditView from "@/views/AuditView";
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
         name: 'record',
         component: RecordView
       },
+      {
+        path: 'audit',
+        name: 'audit',
+        component: AuditView
+      },
     ]
   },
 ]
@@ -52,11 +58,8 @@ const router = new VueRouter({
 
 // 路由守卫
 router.beforeEach((to ,from, next) => {
-  if (to.path ==='/login') {
-    next();
-  }
   const user = localStorage.getItem("user");
-  if (!user && to.path !== '/login') {
+  if (!user && to.path !== '/login' && to.path !== '/register') {
     return next("/login");
   }
   next();

@@ -22,12 +22,13 @@
             <i class="el-icon-s-home"></i>
             <span slot="title">系统首页</span>
           </el-menu-item>
-          <el-submenu index="2" v-if="user.role === 'ROLE_ADMIN'">
+          <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-location"></i><span>用户管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/admin">用户信息</el-menu-item>
+              <el-menu-item index="/admin" v-if="user.role ==='ROLE_ADMIN'">用户信息</el-menu-item>
+              <el-menu-item index="2-2">用户信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
@@ -37,6 +38,14 @@
             <el-menu-item-group>
               <el-menu-item index="/record">听课记录提交</el-menu-item>
               <el-menu-item index="3-2">yyy信息</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-location"></i><span>请销假管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/audit">请假审核</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
