@@ -11,6 +11,8 @@ public class Admin {
 
     @Column(name = "name")
     private String name;
+    @Column(name = "number")
+    private String number;
     @Column(name = "password")
     private String password;
     @Column(name = "sex")
@@ -19,6 +21,8 @@ public class Admin {
     private Integer age;
     @Column(name = "phone")
     private String phone;
+    @Column(name = "school")
+    private String school;
     @Column(name = "role")
     private String role;
     @Transient
@@ -38,6 +42,14 @@ public class Admin {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String nunber) {
+        this.number = nunber;
     }
 
     public String getSex() {
@@ -71,6 +83,15 @@ public class Admin {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
 
     public String getRole() {
         return role;

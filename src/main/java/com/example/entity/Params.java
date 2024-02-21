@@ -4,7 +4,7 @@ public class Params {
 
     private String name;
     private String phone;
-
+    private String number;
     private Integer userId;
 
     private String type;
@@ -27,6 +27,14 @@ public class Params {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getType() {

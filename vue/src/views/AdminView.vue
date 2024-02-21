@@ -2,7 +2,7 @@
   <div>
     <div style="margin-bottom: 15px">
       <el-input v-model="params.name" style="width: 200px" placeholder="请输入姓名"></el-input>
-      <el-input v-model="params.phone" style="width: 200px; margin-left: 5px" placeholder="请输入电话"></el-input>
+      <el-input v-model="params.number" style="width: 200px; margin-left: 5px" placeholder="请输入学工号"></el-input>
       <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">查询</el-button>
       <el-button type="warning" style="margin-left: 10px" @click="reset()">清空</el-button>
       <el-button type="primary" style="margin-left: 10px" @click="add()">新增</el-button>
@@ -10,9 +10,11 @@
     <div>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="name" label="姓名"></el-table-column>
+        <el-table-column prop="number" label="学工号"></el-table-column>
         <el-table-column prop="sex" label="性别"></el-table-column>
         <el-table-column prop="age" label="年龄"></el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
+        <el-table-column prop="school" label="学校"></el-table-column>
         <el-table-column prop="role" label="角色"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
@@ -41,6 +43,9 @@
           <el-form-item label="姓名" label-width="15%">
             <el-input v-model="form.name" autocomplete="off" style="width: 90%"></el-input>
           </el-form-item>
+          <el-form-item label="学工号" label-width="15%">
+            <el-input v-model="form.number" autocomplete="off" style="width: 90%"></el-input>
+          </el-form-item>
           <el-form-item label="性别" label-width="15%">
             <el-radio v-model="form.sex" label="男">男</el-radio>
             <el-radio v-model="form.sex" label="女">女</el-radio>
@@ -50,6 +55,9 @@
           </el-form-item>
           <el-form-item label="电话" label-width="15%">
             <el-input v-model="form.phone" autocomplete="off" style="width: 90%"></el-input>
+          </el-form-item>
+          <el-form-item label="学校" label-width="15%">
+            <el-input v-model="form.school" autocomplete="off" style="width: 90%"></el-input>
           </el-form-item>
           <el-form-item label="角色" label-width="15%">
             <el-select v-model="form.role" placeholder="请选择" style="width: 90%">
@@ -75,7 +83,7 @@ export default {
     return {
       params: {
         name: '',
-        phone: '',
+        number: '',
         pageNum: 1,
         pageSize: 5
       },
@@ -119,7 +127,7 @@ export default {
         pageNum: 1,
         pageSize: 5,
         name: '',
-        phone: ''
+        number: ''
       }
       this.findBySearch();
     },
