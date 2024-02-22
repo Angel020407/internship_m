@@ -23,6 +23,8 @@ public class Admin {
     private String phone;
     @Column(name = "school")
     private String school;
+    @Column(name = "eschool")
+    private String eschool;
     @Column(name = "role")
     private String role;
     @Transient
@@ -92,6 +94,13 @@ public class Admin {
         this.school = school;
     }
 
+    public String getEschool() {
+        return eschool;
+    }
+
+    public void setEschool(String eschool) {
+        this.eschool = eschool;
+    }
 
     public String getRole() {
         return role;

@@ -15,6 +15,7 @@
         <el-table-column prop="age" label="年龄"></el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
         <el-table-column prop="school" label="学校"></el-table-column>
+        <el-table-column prop="eschool" label="实习学校"></el-table-column>
         <el-table-column prop="role" label="角色"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">

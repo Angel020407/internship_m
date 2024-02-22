@@ -5,7 +5,7 @@
       <div style="margin-top: 25px; text-align: center; height: 320px;">
         <el-form :model="admin">
           <el-form-item>
-            <el-input v-model="admin.name" prefix-icon="el-icon-user" style="width: 80%" placeholder="请输入用户名"></el-input>
+            <el-input v-model="admin.number" prefix-icon="el-icon-user" style="width: 80%" placeholder="请输入学工号"></el-input>
           </el-form-item>
           <el-form-item>
             <el-input v-model="admin.password" prefix-icon="el-icon-lock" style="width: 80%" placeholder="请输入密码"></el-input>
