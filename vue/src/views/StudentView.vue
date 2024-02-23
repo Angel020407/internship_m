@@ -4,8 +4,6 @@
       <el-input v-model="params.name" style="width: 200px" placeholder="请输入姓名"></el-input>
       <el-input v-model="params.number" style="width: 200px; margin-left: 5px" placeholder="请输入学工号"></el-input>
       <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">查询</el-button>
-      <el-button type="warning" style="margin-left: 10px" @click="reset()">清空</el-button>
-      <el-button type="primary" style="margin-left: 10px" @click="add()">新增</el-button>
     </div>
     <div>
       <el-table :data="tableData" style="width: 100%">
@@ -16,15 +14,6 @@
         <el-table-column prop="phone" label="电话"></el-table-column>
         <el-table-column prop="school" label="所属学校"></el-table-column>
         <el-table-column prop="eschool" label="实习学校"></el-table-column>
-        <el-table-column prop="role" label="角色"></el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-            <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
-            <el-popconfirm title="确定删除吗？" @confirm="del(scope.row.id)">
-              <el-button slot="reference" type="danger" style="margin-left: 5px">删除</el-button>
-            </el-popconfirm>
-          </template>
-        </el-table-column>
       </el-table>
     </div>
     <div style="margin-top: 10px">
@@ -37,41 +26,6 @@
           layout="total, sizes, prev, pager, next"
           :total="total">
       </el-pagination>
-    </div>
-    <div>
-      <el-dialog title="请填写信息" :visible.sync="dialogFormVisible" width="30%">
-        <el-form :model="form">
-          <el-form-item label="姓名" label-width="15%">
-            <el-input v-model="form.name" autocomplete="off" style="width: 90%"></el-input>
-          </el-form-item>
-          <el-form-item label="学工号" label-width="15%">
-            <el-input v-model="form.number" autocomplete="off" style="width: 90%"></el-input>
-          </el-form-item>
-          <el-form-item label="性别" label-width="15%">
-            <el-radio v-model="form.sex" label="男">男</el-radio>
-            <el-radio v-model="form.sex" label="女">女</el-radio>
-          </el-form-item>
-          <el-form-item label="年龄" label-width="15%">
-            <el-input v-model="form.age" autocomplete="off" style="width: 90%"></el-input>
-          </el-form-item>
-          <el-form-item label="电话" label-width="15%">
-            <el-input v-model="form.phone" autocomplete="off" style="width: 90%"></el-input>
-          </el-form-item>
-          <el-form-item label="学校" label-width="15%">
-            <el-input v-model="form.school" autocomplete="off" style="width: 90%"></el-input>
-          </el-form-item>
-          <el-form-item label="角色" label-width="15%">
-            <el-select v-model="form.role" placeholder="请选择" style="width: 90%">
-              <el-option label="教师" value="ROLE_TEACHER"></el-option>
-              <el-option label="学生" value="ROLE_STUDENT"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="submit()">确 定</el-button>
-        </div>
-      </el-dialog>
     </div>
   </div>
 </template>
@@ -101,7 +55,7 @@ export default {
   // 定义一些页面上控件出发的事件调用的方法
   methods: {
     findBySearch() {
-      request.get("/admin/search", {
+      request.get("/student/search", {
         params: this.params
       }).then(res => {
         if (res.code === '0') {
@@ -141,7 +95,7 @@ export default {
       this.findBySearch();
     },
     submit() {
-      request.post("/admin", this.form).then(res => {
+      request.post("/student", this.form).then(res => {
         if (res.code === '0') {
           this.$message({
             message: '操作成功',
@@ -158,7 +112,7 @@ export default {
       })
     },
     del(id) {
-      request.delete("/admin/" + id).then(res => {
+      request.delete("/student/" + id).then(res => {
         if (res.code === '0') {
           this.$message({
             message: '删除成功',

@@ -31,7 +31,7 @@ public class AdminService {
     }
 
     public void add(Admin admin) {
-        // 1. 用户名一定要有，否则不让新增（后面需要用户名登录）
+        // 1. 学号不可为空
         if (admin.getNumber() == null || "".equals(admin.getNumber())) {
             throw new CustomException("学号不能为空");
         }

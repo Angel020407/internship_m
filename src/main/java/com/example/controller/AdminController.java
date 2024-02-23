@@ -52,7 +52,7 @@ public class AdminController {
 
     @GetMapping("/search")
     public Result findBySearch(Params params) {
-        log.info("拦截器已放行，正式调用接口内部，查询管理员信息");
+        log.info("拦截器已放行，正式调用接口内部，查询用户信息");
         PageInfo<Admin> info = adminService.findBySearch(params);
         return Result.success(info);
     }

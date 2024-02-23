@@ -28,7 +28,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/admin" v-if="user.role ==='ROLE_ADMIN'">用户信息</el-menu-item>
-              <el-menu-item index="2-2">用户信息</el-menu-item>
+              <el-menu-item index="/student" v-if="user.role !='ROLE_STUDENT'">学生信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
