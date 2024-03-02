@@ -45,14 +45,6 @@ public class AuditService {
         PageHelper.startPage(params.getPageNum(), params.getPageSize());
         // 接下来的查询会自动按照当前开启的分页设置来查询
         List<Audit> list = auditDao.findBySearch(params);
-//        for (Audit audit : list) {
-//            if (ObjectUtil.isNotEmpty(audit.getUserId())) {
-//                Admin user = adminDao.selectByPrimaryKey(audit.getUserId());
-//                if (ObjectUtil.isNotEmpty(user)) {
-//                    audit.setUserName(user.getName());
-//                }
-//            }
-//        }
         return PageInfo.of(list);
     }
 

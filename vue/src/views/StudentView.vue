@@ -44,8 +44,8 @@ export default {
       },
       tableData: [],
       total: 0,
-      dialogFormVisible: false,
-      form: {}
+      form: {},
+      user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
     }
   },
   // 页面加载的时候，做一些事情，在created里面
@@ -69,23 +69,6 @@ export default {
         }
       })
     },
-    add() {
-      this.form = {};
-      this.dialogFormVisible = true;
-    },
-    edit(obj) {
-      this.form = obj;
-      this.dialogFormVisible = true;
-    },
-    reset() {
-      this.params = {
-        pageNum: 1,
-        pageSize: 5,
-        name: '',
-        number: ''
-      }
-      this.findBySearch();
-    },
     handleSizeChange(pageSize) {
       this.params.pageSize = pageSize;
       this.findBySearch();
@@ -93,39 +76,6 @@ export default {
     handleCurrentChange(pageNum) {
       this.params.pageNum = pageNum;
       this.findBySearch();
-    },
-    submit() {
-      request.post("/student", this.form).then(res => {
-        if (res.code === '0') {
-          this.$message({
-            message: '操作成功',
-            type: 'success'
-          });
-          this.dialogFormVisible = false;
-          this.findBySearch();
-        } else {
-          this.$message({
-            message: res.msg,
-            type: 'error'
-          });
-        }
-      })
-    },
-    del(id) {
-      request.delete("/student/" + id).then(res => {
-        if (res.code === '0') {
-          this.$message({
-            message: '删除成功',
-            type: 'success'
-          });
-          this.findBySearch();
-        } else {
-          this.$message({
-            message: res.msg,
-            type: 'success'
-          });
-        }
-      })
     }
   }
 }
