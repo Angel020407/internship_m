@@ -55,6 +55,7 @@ public class AdminController {
         log.info("拦截器已放行，正式调用接口内部，查询用户信息");
         PageInfo<Admin> info = adminService.findBySearch(params);
         return Result.success(info);
+
     }
 
     @DeleteMapping("/{id}")
