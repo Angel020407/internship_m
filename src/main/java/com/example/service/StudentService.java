@@ -26,12 +26,18 @@ public class StudentService {
     @Resource
     private AdminDao adminDao;
 
+    @Resource
+    private Admin tempUser;
+
 
     public PageInfo<Student> findBySearch(Params params ) {
         // 开启分页查询
         PageHelper.startPage(params.getPageNum(), params.getPageSize());
         // 接下来的查询会自动按照当前开启的分页设置来查询
         List<Student> list = studentDao.findBySearch(params);
+        Admin user = adminDao.findByNumber(tempUser.getNumber());
+        log.info("查询到学生列表: " + user.getSchool());
+        log.info("查询到学生列表: " + user.getPassword());
         return PageInfo.of(list);
     }
 
