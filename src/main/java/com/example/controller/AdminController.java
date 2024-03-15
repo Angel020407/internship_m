@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.common.AutoLog;
 import com.example.common.Result;
 import com.example.entity.Admin;
 import com.example.entity.Params;
@@ -23,6 +24,7 @@ public class AdminController {
     private AdminService adminService;
 
     @PostMapping("/login")
+    @AutoLog("用户登录")
     public Result login(@RequestBody Admin admin) {
         Admin loginUser = adminService.login(admin);
         return Result.success(loginUser);
@@ -35,6 +37,7 @@ public class AdminController {
     }
 
     @PostMapping
+    @AutoLog("修改用户信息")
     public Result save(@RequestBody Admin admin) {
         if (admin.getId() == null) {
             adminService.add(admin);
@@ -59,6 +62,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/{id}")
+    @AutoLog("删除用户信息")
     public Result delete(@PathVariable Integer id) {
         adminService.delete(id);
         return Result.success();

@@ -9,6 +9,7 @@ import RecordView from "@/views/RecordView";
 import AuditView from "@/views/AuditView";
 import StudentView from "@/views/StudentView";
 import NoticeView from "@/views/NoticeView";
+import LogView from "@/views/LogView";
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ const routes = [
         path: 'notice',
         name: 'notice',
         component: NoticeView
+      },
+      {
+        path: 'log',
+        name: 'log',
+        component: LogView
       },
     ]
   },

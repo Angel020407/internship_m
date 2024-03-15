@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.common.Result;
-import com.example.entity.Audit;
 import com.example.entity.Params;
 import com.example.entity.Student;
 import com.example.service.StudentService;

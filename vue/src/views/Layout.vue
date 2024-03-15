@@ -50,10 +50,13 @@
           </el-submenu>
           <el-submenu index="5" v-if="user.role ==='ROLE_ADMIN'">
             <template slot="title">
-              <i class="el-icon-location "></i><span>公告管理</span>
+              <i class="el-icon-location "></i><span>信息管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="/notice">系统公告</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group>
+              <el-menu-item index="/log">操作日志</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

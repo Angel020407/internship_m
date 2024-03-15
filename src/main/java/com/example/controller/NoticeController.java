@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.example.common.AutoLog;
 import com.example.common.Result;
 import com.example.entity.Notice;
 import com.example.entity.Params;
@@ -42,6 +43,7 @@ public class NoticeController {
     }
 
     @DeleteMapping("/{id}")
+    @AutoLog("删除日志文件")
     public Result delete(@PathVariable Integer id) {
         noticeService.delete(id);
         return Result.success();

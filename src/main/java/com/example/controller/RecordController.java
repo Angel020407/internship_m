@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.common.AutoLog;
 import com.example.common.Result;
 import com.example.entity.Record;
 import com.example.entity.Params;
@@ -25,6 +26,7 @@ public class RecordController {
     }
 
     @PostMapping
+    @AutoLog("修改文件")
     public Result save(@RequestBody Record Record) {
         if (Record.getId() == null) {
             recordService.add(Record);
@@ -35,6 +37,7 @@ public class RecordController {
     }
 
     @DeleteMapping("/{id}")
+    @AutoLog("修改文件")
     public Result delete(@PathVariable Integer id) {
         recordService.delete(id);
         return Result.success();
