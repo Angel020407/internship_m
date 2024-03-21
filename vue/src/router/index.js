@@ -6,6 +6,7 @@ import AdminView from "@/views/AdminView.vue";
 import LayoutView from "@/views/Layout.vue";
 import RegisterView from "@/views/RegisterView";
 import RecordView from "@/views/RecordView";
+import FormView from "@/views/FormView";
 import AuditView from "@/views/AuditView";
 import StudentView from "@/views/StudentView";
 import NoticeView from "@/views/NoticeView";
@@ -43,6 +44,11 @@ const routes = [
         path: 'record',
         name: 'record',
         component: RecordView
+      },
+      {
+        path: 'form',
+        name: 'form',
+        component: FormView
       },
       {
         path: 'audit',
