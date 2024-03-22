@@ -12,7 +12,7 @@
         <el-table-column prop="name" label="作业类型"></el-table-column>
         <el-table-column prop="num" label="序号"></el-table-column>
         <el-table-column prop="userNumber" label="学生学号"></el-table-column>
-        <el-table-column label="显示文件">
+        <!-- <el-table-column label="显示文件">
           <template v-slot="scope">
             <el-image
                 style="width: 70px; height: 70px; border-radius: 50%"
@@ -20,15 +20,14 @@
                 :preview-src-list="['http://localhost:8080/api/files/' + scope.row.img]">
             </el-image>
           </template>
-        </el-table-column>
-        <el-table-column label="上传文件">
-          <template slot-scope="scope">
-            <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
-          </template>
-        </el-table-column>
-        <el-table-column prop="score" label="分数"></el-table-column>
+        </el-table-column> -->
+        <el-table-column prop="score" label="成绩"></el-table-column>
+        <el-table-column prop="appraise" label="指导老师评价"></el-table-column>
+        <el-table-column prop="appraise" label="基地校老师评价"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
+            <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
+            <el-button type="success" @click="rating(scope.row)">评分</el-button>
             <el-button type="primary" @click="down(scope.row.img)">下载</el-button>
             <el-popconfirm title="确定删除吗？" @confirm="del(scope.row.id)">
               <el-button slot="reference" type="danger" style="margin-left: 5px">删除</el-button>
@@ -72,6 +71,26 @@
         </div>
       </el-dialog>
     </div>
+    <div>
+      <el-dialog title="请评分" :visible.sync="ratingFormVisible" width="35%">
+        <el-form :model="form">
+          <el-form-item label="成绩" label-width="15%">
+            <el-select v-model="form.score" placeholder="请选择" style="width: 90%">
+              <el-option label="优秀" value="优秀"></el-option>
+              <el-option label="良好" value="良好"></el-option>
+              <el-option label="请重做" value="请重做"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="教师评价" label-width="15%">
+            <el-input type="textarea" v-model="form.appraise" autocomplete="off" style="width: 90%"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="submit()">确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -90,6 +109,7 @@ export default {
       tableData: [],
       total: 0,
       dialogFormVisible: false,
+      ratingFormVisible: false,
       form: {},
       user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
     }
@@ -122,6 +142,10 @@ export default {
       this.form = obj;
       this.dialogFormVisible = true;
     },
+    rating(obj) {
+      this.form = obj;
+      this.ratingFormVisible = true;
+    },
     reset() {
       this.params = {
         pageNum: 1,
@@ -144,6 +168,7 @@ export default {
         if (res.code === '0') {
           this.$message.success("操作成功");
           this.dialogFormVisible = false;
+          this.ratingFormVisible = false;
           this.findBySearch();
         } else {
           this.$message.error(res.msg)

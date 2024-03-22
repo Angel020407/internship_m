@@ -18,7 +18,11 @@ public class Form {
     @Column(name = "img")
     private String img;
     @Column(name = "score")
-    private Integer score;
+    private String score;
+    @Column(name = "appraise")
+    private String appraise;
+    @Column(name = "evaluate")
+    private String evaluate;
     @Transient
     private String userNumber;
 
@@ -66,12 +70,28 @@ public class Form {
         this.userId = userId;
     }
 
-    public Integer getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(Integer score) {
+    public void setScore(String score) {
         this.score = score;
+    }
+
+    public String getAppraise() {
+        return appraise;
+    }
+
+    public void setAppraise(String appraise) {
+        this.appraise = appraise;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
     }
 
     public String getUserNumber() {

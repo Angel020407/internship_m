@@ -16,8 +16,8 @@
         <el-table-column prop="reason" label="审核意见"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" @click="edit(scope.row)" v-if="user.role === 'ROLE_STUDENT'">编辑</el-button>
-            <el-button type="success" @click="audit(scope.row)" v-if="user.role !== 'ROLE_STUDENT'">审核</el-button>
+            <el-button type="primary" @click="edit(scope.row)" v-if="user.role === 'ROLE_STUDENT' && user.role === 'ROLE_ADMIN'">编辑</el-button>
+            <el-button type="success" @click="audit(scope.row)" v-if="user.role !== 'ROLE_STUDENT' && user.role !== 'ROLE_TEACGAR'">审核</el-button>
             <el-popconfirm title="确定删除吗？" @confirm="del(scope.row.id)">
               <el-button slot="reference" type="danger" style="margin-left: 5px">删除</el-button>
             </el-popconfirm>
