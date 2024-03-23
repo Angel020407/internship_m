@@ -4,7 +4,7 @@
       <el-input v-model="params.name" style="width: 200px" placeholder="请输入请假原由"></el-input>
       <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">查询</el-button>
       <el-button type="warning" style="margin-left: 10px" @click="reset()">清空</el-button>
-      <el-button type="primary" style="margin-left: 10px" @click="add()" v-if="user.role === 'ROLE_STUDENT'">新增</el-button>
+      <el-button type="primary" style="margin-left: 10px" @click="add()" v-if="user.role === 'ROLE_STUDENT' || user.role === 'ROLE_ADMIN'">新增</el-button>
     </div>
     <div>
       <el-table :data="tableData" style="width: 100%">
@@ -12,14 +12,16 @@
         <el-table-column prop="time" label="请假日期"></el-table-column>
         <el-table-column prop="day" label="截止日期"></el-table-column>
         <el-table-column prop="userName" label="请假用户"></el-table-column>
+        <el-table-column prop="userNumber" label="学号"></el-table-column>
+        <!-- <el-table-column prop="userSchool" label="所属学校"></el-table-column> -->
         <el-table-column prop="status" label="审核状态"></el-table-column>
         <el-table-column prop="reason" label="审核意见"></el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" v-if="user.role !== 'ROLE_TEACHER'">
           <template slot-scope="scope">
-            <el-button type="primary" @click="edit(scope.row)" v-if="user.role === 'ROLE_STUDENT' && user.role === 'ROLE_ADMIN'">编辑</el-button>
-            <el-button type="success" @click="audit(scope.row)" v-if="user.role !== 'ROLE_STUDENT' && user.role !== 'ROLE_TEACGAR'">审核</el-button>
+            <el-button type="primary" @click="edit(scope.row)" v-if="user.role === 'ROLE_STUDENT' || user.role === 'ROLE_ADMIN'">编辑</el-button>
+            <el-button type="success" @click="audit(scope.row)" v-if="user.role === 'ROLE_TEACHER2' || user.role === 'ROLE_ADMIN'">审核</el-button>
             <el-popconfirm title="确定删除吗？" @confirm="del(scope.row.id)">
-              <el-button slot="reference" type="danger" style="margin-left: 5px">删除</el-button>
+              <el-button slot="reference" type="danger" style="margin-left: 5px" v-if="user.role === 'ROLE_STUDENT' || user.role === 'ROLE_ADMIN'">删除</el-button>
             </el-popconfirm>
           </template>
         </el-table-column>
@@ -115,6 +117,7 @@ export default {
     add() {
       this.form = {};
       this.form.userId = this.user.id;
+      this.form.userSchool = this.user.school;
       this.dialogFormVisible = true;
     },
     edit(obj) {

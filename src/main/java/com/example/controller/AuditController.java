@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.common.AutoLog;
 import com.example.common.Result;
 import com.example.entity.Audit;
 import com.example.entity.Params;
@@ -18,7 +19,7 @@ public class AuditController {
     private AuditService auditService;
 
     @PostMapping
-
+    @AutoLog("编辑请假信息")
     public Result save(@RequestBody Audit audit) {
         if (audit.getId() == null) {
             auditService.add(audit);
@@ -35,6 +36,7 @@ public class AuditController {
     }
 
     @DeleteMapping("/{id}")
+    @AutoLog("删除请假信息")
     public Result delete(@PathVariable Integer id) {
         auditService.delete(id);
         return Result.success();

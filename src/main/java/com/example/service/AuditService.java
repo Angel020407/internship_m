@@ -41,6 +41,9 @@ public class AuditService {
         if ("ROLE_STUDENT".equals(user.getRole())) {
             params.setUserId(user.getId());
         }
+        if("ROLE_TEACHER2".equals(user.getRole())) {
+            params.setUserSchool(user.getSchool());
+        }
         // 开启分页查询，下一次查询就会分页
         PageHelper.startPage(params.getPageNum(), params.getPageSize());
         // 接下来的查询会自动按照当前开启的分页设置来查询

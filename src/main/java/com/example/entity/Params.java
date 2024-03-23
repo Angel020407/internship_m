@@ -11,6 +11,9 @@ public class Params {
     private String type;
     private String num;
 
+    private String userSchool;
+    private String userEschool;
+
     private Integer pageNum;
     private Integer pageSize;
 
@@ -84,5 +87,21 @@ public class Params {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUserSchool() {
+        return userSchool;
+    }
+
+    public void setUserSchool(String userSchool) {
+        this.userSchool = userSchool;
+    }
+
+    public String getUserEschool() {
+        return userEschool;
+    }
+
+    public void setUserEschool(String userEschool) {
+        this.userEschool = userEschool;
     }
 }
