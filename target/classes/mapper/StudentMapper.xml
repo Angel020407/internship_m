@@ -12,6 +12,9 @@
             <if test="params != null and params.number != null and params.number != ''">
                 and number like concat('%', #{ params.number }, '%')
             </if>
+            <if test="params != null and params.userSchool != null">
+                and admin.eschool = #{ params.userSchool }
+            </if>
         </where>
     </select>
 

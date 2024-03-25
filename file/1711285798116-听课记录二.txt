@@ -1,0 +1,48 @@
+Page({
+  data: {
+    dice1: '../images/dice1.png',
+    dice2: '../images/dice1.png',
+    diceImages: [
+      '../images/dice1.png',
+      '../images/dice2.png',
+      '../images/dice3.png',
+      '../images/dice4.png',
+      '../images/dice5.png',
+      '../images/dice6.png',
+    ],
+    isRolling: false,
+    rollingInterval: null, // 用于存储骰子随机变化的计时器ID
+  },
+
+  rollDice: function(e) {
+    // ...
+  },
+
+  startRoll: function() {
+    if (this.data.isRolling) {
+      return; // 如果正在进行骰子随机变化，则不做任何处理
+    }
+
+    this.setData({
+      isRolling: true,
+      rollingInterval: setInterval(() =&gt; {
+        // 更新骰子的随机值
+        this.setData({
+          dice1: this.data.diceImages[Math.floor(Math.random() * 6)],
+          dice2: this.data.diceImages[Math.floor(Math.random() * 6)]
+        });
+      }, 500)
+    });
+  },
+
+  stopRoll: function() {
+    if (!this.data.isRolling) {
+      return; // 如果没有进行骰子随机变化，则不做任何处理
+    }
+
+    clearInterval(this.data.rollingInterval); // 清除计时器
+    this.setData({
+      isRolling: false
+    });
+  }
+});

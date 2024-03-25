@@ -11,6 +11,7 @@ import AuditView from "@/views/AuditView";
 import StudentView from "@/views/StudentView";
 import NoticeView from "@/views/NoticeView";
 import LogView from "@/views/LogView";
+import PersonView from "@/views/PersonView";
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,16 @@ const routes = [
         path: 'log',
         name: 'log',
         component: LogView
+      },
+      {
+        path: 'log',
+        name: 'log',
+        component: LogView
+      },
+      {
+        path: 'person',
+        name: 'person',
+        component: PersonView
       },
     ]
   },

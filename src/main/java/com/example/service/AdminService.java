@@ -53,6 +53,16 @@ public class AdminService {
     }
 
     public void update(Admin admin) {
+        // 1. 学号不可为空
+        if (admin.getNumber() == null || "".equals(admin.getNumber())) {
+            throw new CustomException("学号不能为空");
+        }
+        // 2. 进行重复性判断，学号不可重复
+        Admin user = adminDao.findByNumber(admin.getNumber());
+        if (user != null) {
+            // 说明已经有了，这里我们就要提示前台不允许新增了
+            throw new CustomException("该用户已存在!");
+        }
         adminDao.updateByPrimaryKeySelective(admin);
     }
 

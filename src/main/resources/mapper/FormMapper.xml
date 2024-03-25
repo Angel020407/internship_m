@@ -3,7 +3,7 @@
 <mapper namespace="com.example.dao.FormDao">
 
     <select id="findBySearch" resultType="com.example.entity.Form">
-        select form.*, admin.number as userNumber from form
+        select form.*, admin.name as userName, admin.number as userNumber from form
         left join admin on form.userId = admin.id
         <where>
             <if test="params != null and params.name != null and params.name != ''">
@@ -11,6 +11,12 @@
             </if>
             <if test="params != null and params.num != null and params.num != ''">
                 and form.num like concat('%', #{ params.num }, '%')
+            </if>
+            <if test="params != null and params.userId != null">
+                and form.userId = #{ params.userId }
+            </if>
+            <if test="params != null and params.userSchool != null">
+                and form.userEschool = #{ params.userSchool }
             </if>
         </where>
     </select>

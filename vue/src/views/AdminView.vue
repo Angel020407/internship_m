@@ -11,6 +11,7 @@
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="name" label="姓名"></el-table-column>
         <el-table-column prop="number" label="学工号"></el-table-column>
+        <el-table-column prop="password" label="密码"></el-table-column>
         <el-table-column prop="sex" label="性别"></el-table-column>
         <el-table-column prop="age" label="年龄"></el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
@@ -46,6 +47,9 @@
           </el-form-item>
           <el-form-item label="学工号" label-width="15%">
             <el-input v-model="form.number" autocomplete="off" style="width: 90%"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" label-width="15%">
+            <el-input v-model="form.password" autocomplete="off" style="width: 90%"></el-input>
           </el-form-item>
           <el-form-item label="性别" label-width="15%">
             <el-radio v-model="form.sex" label="男">男</el-radio>

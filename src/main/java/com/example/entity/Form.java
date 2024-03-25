@@ -23,6 +23,10 @@ public class Form {
     private String appraise;
     @Column(name = "evaluate")
     private String evaluate;
+    @Column(name = "userEschool")
+    private String userEschool;
+    @Transient
+    private String userName;
     @Transient
     private String userNumber;
 
@@ -92,6 +96,22 @@ public class Form {
 
     public void setEvaluate(String evaluate) {
         this.evaluate = evaluate;
+    }
+
+    public String getUserEschool() {
+        return userEschool;
+    }
+
+    public void setUserEschool(String userEschool) {
+        this.userEschool = userEschool;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserNumber() {

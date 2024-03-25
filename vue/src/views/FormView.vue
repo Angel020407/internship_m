@@ -5,13 +5,14 @@
       <el-input v-model="params.num" style="width: 200px; margin-left: 5px" placeholder="请输入序号"></el-input>
       <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">查询</el-button>
       <el-button type="warning" style="margin-left: 10px" @click="reset()">清空</el-button>
-      <el-button type="primary" style="margin-left: 10px" @click="add()" v-if="user.role === 'ROLE_STUDENT'">新增</el-button>
+      <el-button type="primary" style="margin-left: 10px" @click="add()" v-if="user.role === 'ROLE_STUDENT' || user.role === 'ROLE_ADMIN'">新增</el-button>
     </div>
     <div>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="name" label="作业类型"></el-table-column>
         <el-table-column prop="num" label="序号"></el-table-column>
-        <el-table-column prop="userNumber" label="学生学号"></el-table-column>
+        <el-table-column prop="userName" label="姓名"></el-table-column>
+        <el-table-column prop="userNumber" label="学号"></el-table-column>
         <!-- <el-table-column label="显示文件">
           <template v-slot="scope">
             <el-image
@@ -26,9 +27,9 @@
         <el-table-column prop="evaluate" label="基地校老师评价"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
-            <el-button type="success" @click="rating(scope.row)">评分</el-button>
-            <el-button type="success" @click="assess(scope.row)">评分</el-button>
+            <el-button type="primary" @click="edit(scope.row)" v-if="user.role === 'ROLE_STUDENT' || user.role === 'ROLE_ADMIN'">编辑</el-button>
+            <el-button type="success" @click="rating(scope.row)" v-if="user.role === 'ROLE_TEACHER' || user.role === 'ROLE_ADMIN'">评分</el-button>
+            <el-button type="success" @click="assess(scope.row)" v-if="user.role === 'ROLE_TEACHER2' || user.role === 'ROLE_ADMIN'">评价</el-button>
             <el-button type="primary" @click="down(scope.row.img)">下载</el-button>
             <el-popconfirm title="确定删除吗？" @confirm="del(scope.row.id)">
               <el-button slot="reference" type="danger" style="margin-left: 5px">删除</el-button>
@@ -151,6 +152,7 @@ export default {
     add() {
       this.form = {};
       this.form.userId = this.user.id;
+      this.form.userEschool = this.user.eschool;
       this.dialogFormVisible = true;
     },
     edit(obj) {

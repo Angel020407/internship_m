@@ -2,14 +2,17 @@
   <div>
     <el-container>
       <el-header style="background-color: #4c535a">
-        <img src="@/assets/logo.png" alt="" style="width: 40px; position: relative; top: 10px;">
+        <img src="@/assets/师大logo.png" alt="" style="width: 40px; position: relative; top: 10px;">
         <span style="font-size: 20px; margin-left: 15px; color: white">学生实习信息管理系统</span>
         <el-dropdown style="float: right; height: 60px; line-height: 60px">
           <span class="el-dropdown-link" style="color: white; font-size: 16px">{{ user.name }}<i class="el-icon-arrow-down el-icon--right"></i></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <div @click="logout">退出登录</div>
+              <div @click="message">个人信息</div>
             </el-dropdown-item>
+            <el-dropdown-item>
+              <div @click="logout">退出登录</div>
+            </el-dropdown-item> 
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -22,13 +25,13 @@
             <i class="el-icon-s-home"></i>
             <span slot="title">系统首页</span>
           </el-menu-item>
-          <el-submenu index="2">
+          <el-submenu index="2"  v-if="user.role !=='ROLE_STUDENT'">
             <template slot="title">
-              <i class="el-icon-location"></i><span>用户管理</span>
+              <i class="el-icon-location" ></i><span>用户管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="/admin" v-if="user.role ==='ROLE_ADMIN'">用户信息</el-menu-item>
-              <el-menu-item index="/student" v-if="user.role !='ROLE_STUDENT'">学生信息</el-menu-item>
+              <el-menu-item index="/student">学生信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
@@ -82,7 +85,11 @@ export default {
     logout() {
       localStorage.removeItem("user");
       this.$router.push("/login");
+    },
+    message(){
+      this.$router.push("/person");
     }
+
   }
 
 }

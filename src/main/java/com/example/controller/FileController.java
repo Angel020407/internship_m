@@ -27,9 +27,9 @@ public class FileController {
     @PostMapping("/upload")
     public Result upload(MultipartFile file) {
         synchronized (FileController.class) {
-            // 获取当前时间戳
+            // 获取时间戳
             String flag = System.currentTimeMillis() + "";
-            // 获取原始文件名（就是你上传的文件本身的名字）
+            // 获取原始文件名
             String fileName = file.getOriginalFilename();
             try {
                 // 如果没有file文件夹，会给你在项目根目录下创建一个file文件夹

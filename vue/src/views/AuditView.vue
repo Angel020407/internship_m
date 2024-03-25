@@ -11,9 +11,10 @@
         <el-table-column prop="name" label="请假原由"></el-table-column>
         <el-table-column prop="time" label="请假日期"></el-table-column>
         <el-table-column prop="day" label="截止日期"></el-table-column>
-        <el-table-column prop="userName" label="请假用户"></el-table-column>
+        <el-table-column prop="userName" label="姓名"></el-table-column>
         <el-table-column prop="userNumber" label="学号"></el-table-column>
-        <!-- <el-table-column prop="userSchool" label="所属学校"></el-table-column> -->
+        <el-table-column prop="userSchool" label="所属学校"></el-table-column>
+        <el-table-column prop="userEschool" label="实习学校"></el-table-column>
         <el-table-column prop="status" label="审核状态"></el-table-column>
         <el-table-column prop="reason" label="审核意见"></el-table-column>
         <el-table-column label="操作" v-if="user.role !== 'ROLE_TEACHER'">
@@ -118,6 +119,7 @@ export default {
       this.form = {};
       this.form.userId = this.user.id;
       this.form.userSchool = this.user.school;
+      this.form.userEschool = this.user.eschool;
       this.dialogFormVisible = true;
     },
     edit(obj) {
